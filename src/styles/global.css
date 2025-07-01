@@ -1,0 +1,42 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+.flexrowc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flexrowb {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.flexrowa {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.flexrows {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.flexcolc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.flexcols {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+}
+.font-nunito {
+  font-family: "Nunito", sans-serif;
+}
+.khmer {
+  font-family: "Koulen", sans-serif;
+  font-style: normal;
+}

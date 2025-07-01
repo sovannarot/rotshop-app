@@ -1,0 +1,17 @@
+---
+const { lang } = Astro.params;
+import ProductShow from "@/components/ProductShow";
+import Layout from "@/layouts/Layout.astro";
+
+---
+
+<Layout
+  lang={lang} where="Product"><div
+    class="flex flex-col w-full justify-center items-center"
+  >
+    <h2 class="text-3xl w-[300px] text-center mt-2 khmer" transition:name="title">
+      {lang == "En" ? "ALL PRODUCTS" : "ទំនិញទាំងអស់"}
+    </h2>
+    <ProductShow lang={lang} promotion={false} client:visible />
+  </div></Layout
+>

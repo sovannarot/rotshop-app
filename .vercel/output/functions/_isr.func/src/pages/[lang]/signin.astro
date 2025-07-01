@@ -1,0 +1,190 @@
+---
+import Layout from "@/layouts/Layout.astro";
+const { lang } = Astro.params;
+const accessToken = Astro.cookies.get("accessToken")?.value;
+if (accessToken) {
+  return Astro.redirect(`/${lang}/dashboard`);
+}
+import Logo from "@/assets/img1.jpg";
+---
+
+<Layout lang={lang} where="signin">
+  <div
+    class="w-screen h-[calc(100svh-64px)] max-[1000px]:h-[calc(100svh-128px)] flexcolc"
+  >
+    <a
+      href={"/" + lang + "/register"}
+      class="text-xl text-blue-500 khmer mb-2 hover:text-red-500"
+    >
+      {lang == "En" ? "Go to Register Page" : "ទៅកាន់កន្លែងចុះឈ្មោះ"}
+    </a>
+    <form
+      action="/api/auth/signin"
+      method="post"
+      class="bg-amber-100 w-auto h-auto p-2 flexcolc rounded-2xl gap-1"
+    >
+      <div class="avatar">
+        <div class="w-24 rounded-xl">
+          <img src={Logo.src} loading="lazy" decoding="async" />
+        </div>
+      </div>
+      <p class="khmer m-2">{lang == "En" ? "SignUp" : "បង្កើតគណនី"}</p>
+      <label class="input validator">
+        <svg
+          class="h-[1em] opacity-50"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 16 16"
+        >
+          <g fill="none">
+            <path
+              d="M7.25 11.5C6.83579 11.5 6.5 11.8358 6.5 12.25C6.5 12.6642 6.83579 13 7.25 13H8.75C9.16421 13 9.5 12.6642 9.5 12.25C9.5 11.8358 9.16421 11.5 8.75 11.5H7.25Z"
+              fill="currentColor"></path>
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M6 1C4.61929 1 3.5 2.11929 3.5 3.5V12.5C3.5 13.8807 4.61929 15 6 15H10C11.3807 15 12.5 13.8807 12.5 12.5V3.5C12.5 2.11929 11.3807 1 10 1H6ZM10 2.5H9.5V3C9.5 3.27614 9.27614 3.5 9 3.5H7C6.72386 3.5 6.5 3.27614 6.5 3V2.5H6C5.44771 2.5 5 2.94772 5 3.5V12.5C5 13.0523 5.44772 13.5 6 13.5H10C10.5523 13.5 11 13.0523 11 12.5V3.5C11 2.94772 10.5523 2.5 10 2.5Z"
+              fill="currentColor"></path>
+          </g>
+        </svg>
+        <input
+          name="phone"
+          id="phone"
+          type="tel"
+          class="tabular-nums"
+          required
+          placeholder={lang == "En" ? "Phone" : "លេខទូរស័ព្ទ"}
+          title="Must be 10 digits"
+        />
+      </label>
+      <div class="container">
+        <svg id="lock" width="28" height="28" viewBox="0 0 55 55">
+          <path
+            d="M44.05064,26.35243a2.79478,2.79478,0,0,0-2.05238-.845h-.96642V19.70883a13.01549,13.01549,0,0,0-3.98477-9.54056A13.01759,13.01759,0,0,0,27.5042,6.18119a13.01466,13.01466,0,0,0-9.54288,3.98708,13.01551,13.01551,0,0,0-3.98476,9.54056v5.79855h-.96644a2.88526,2.88526,0,0,0-2.89926,2.89927V45.8a2.886,2.886,0,0,0,2.89926,2.89927H41.99826A2.886,2.886,0,0,0,44.89753,45.8V28.40666a2.79637,2.79637,0,0,0-.84689-2.05423Zm-8.8169-.845H19.7728V19.70883a7.73329,7.73329,0,0,1,7.7314-7.72909,7.73013,7.73013,0,0,1,7.72955,7.72909Zm0,0"
+          ></path>
+        </svg>
+        <input
+          type="password"
+          required
+          placeholder={lang == "En" ? "Password" : "លេខសម្ងាត់"}
+          minlength="8"
+          name="password"
+          id="password"
+        />
+        <div id="eye-wrapper" onclick="toggle()">
+          <svg id="open" width="25" height="25">
+            <g stroke="#7D4262" stroke-miterlimit="10">
+              <path
+                d="M21.632 12.5a9.759 9.759 0 01-18.264 0 9.759 9.759 0 0118.264 0z"
+                fill="none"></path>
+              <circle cx="12.5" cy="12.5" r="3" fill="#7D4262"></circle>
+              <path
+                fill="none"
+                d="M12.5 5v1-4M9.291 6.337L7.709 2.663M15.709 6.337l1.582-3.674"
+              ></path>
+            </g>
+          </svg>
+          <svg id="close" width="25" height="25">
+            <g fill="none" stroke="#7D4262" stroke-miterlimit="10">
+              <path
+                d="M21.632 12.5a9.759 9.759 0 01-18.264 0M12.5 19.5v-1 4M9.291 18.163l-1.582 3.674M15.709 18.163l1.582 3.674"
+              ></path>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <label class="input bg-transparent border-0"
+        ><button
+          type="submit"
+          class="khmer w-full h-full text-center text-white bg-[#1c2f30] rounded-2xl"
+          >{lang == "En" ? "Submit" : "យល់ព្រម"}</button
+        ></label
+      >
+    </form>
+  </div>
+</Layout>
+<style>
+  .container {
+    background-color: #121726;
+    height: 40px;
+    width: 280px;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 0;
+  }
+  input {
+    width: 230px;
+    position: absolute;
+    left: 0px;
+    font-size: 18px;
+    transform: translate(0, -50%);
+    top: 50%;
+    border: none;
+    box-sizing: border-box;
+    padding-left: 40px;
+    background-color: transparent;
+    color: #7d4262;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    outline: none;
+    z-index: 2;
+  }
+  ::placeholder {
+    color: #7d4262;
+  }
+  #lock {
+    fill: white;
+    position: absolute;
+    transform: translate(0, -50%);
+    top: 46%;
+    left: 8px;
+    z-index: 2;
+    transition: 0.5s;
+  }
+  #eye-wrapper {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(0, -50%);
+    top: 50%;
+    right: 15px;
+    background-color: white;
+    transition: 0.5s;
+    cursor: pointer;
+    z-index: 1;
+  }
+  #open,
+  #close {
+    stroke-width: 2px;
+    position: absolute;
+    top: 0.5px;
+  }
+  #open {
+    display: none;
+  }
+</style>
+<script is:inline>
+  var state = false;
+  function toggle() {
+    if (state) {
+      document.getElementById("password").setAttribute("type", "password");
+      document.getElementById("eye-wrapper").style.boxShadow =
+        "0 0 0 0px white";
+      document.getElementById("lock").style.fill = "white";
+      document.getElementById("open").style.display = "none";
+      document.getElementById("close").style.display = "block";
+      state = false;
+    } else {
+      document.getElementById("password").setAttribute("type", "text");
+      document.getElementById("eye-wrapper").style.boxShadow =
+        "0 0 0 250px white";
+      document.getElementById("lock").style.fill = "#121726";
+      document.getElementById("open").style.display = "block";
+      document.getElementById("close").style.display = "none";
+      state = true;
+    }
+  }
+</script>

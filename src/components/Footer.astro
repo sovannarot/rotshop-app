@@ -1,0 +1,246 @@
+---
+import Logo from "../assets/img1.jpg";
+import { langdata } from "../data/langdata";
+import { fixedData } from "../data/fixedData";
+const { lang } = Astro.props;
+export const prerender = true;
+// Example style for SVGs
+const svgStyle = {
+  border: "1px solid white",
+  borderRadius: "2px",
+  cursor: "pointer",
+  padding: "2px 1px",
+};
+
+// Example image for payment (replace with your actual image path)
+import weAccept from "../assets/we-accept.webp";
+---
+
+<div
+  class="w-[100vw] h-[300px] bg-accent dark:bg-success-content flex justify-around items-center flex-col"
+>
+  <div class="flexrowc w-full gap-1 mt-1">
+    <img
+      src={Logo.src}
+      class="w-[50px] rounded-2xl min-[400px]:hidden"
+      loading="lazy"
+      decoding="async"
+    /><div class="badge badge-success min-[400px]:hidden">RotShop-App</div>
+  </div>
+  <div
+    class="w-[100vw] h-[200px] bg-accent dark:bg-success-content flexrowa px-3"
+  >
+    <img
+      src={Logo.src}
+      loading="lazy"
+      decoding="async"
+      class="w-[60px] rounded-2xl max-[400px]:hidden"
+    />
+    <div id="more" class="flex flex-col justify-center items-start">
+      <h1 class="text-white text-2xl">
+        {lang == "En" ? "Mores" : "ចំណុចបន្ថែម"}
+      </h1>
+      {
+        lang == "En"
+          ? langdata.En.Footer.a.map((a) => (
+              <a href={"/" + lang + a.url}>{a.name}</a>
+            ))
+          : langdata.Kh.Footer.a.map((a) => (
+              <a href={"/" + lang + a.url}>{a.name}</a>
+            ))
+      }
+    </div>
+    <div
+      id="follow"
+      class="flex flex-col items-start justify-center h-auto w-auto translate-y-[-18px] max-[500px]:hidden"
+    >
+      <h1 class="text-white text-2xl">
+        {lang == "En" ? "Follows Us" : "តាមដានយើង:"}
+      </h1>
+      <a href={fixedData.Footer.facebook}>
+        <div class="flex justify-center items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-brand-facebook"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style={svgStyle}
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path
+              d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3"
+            ></path>
+          </svg>
+          <h1>Facebook</h1>
+        </div>
+      </a>
+      <a href={fixedData.Footer.instagram}>
+        <div class="flex justify-center items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-brand-instagram"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style={svgStyle}
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <rect x="4" y="4" width="16" height="16" rx="4"></rect>
+            <circle cx="12" cy="12" r="3"></circle>
+            <line x1="16.5" y1="7.5" x2="16.5" y2="7.501"></line>
+          </svg>
+          <h1>Instagram</h1>
+        </div>
+      </a>
+      <a href={fixedData.Footer.telegram}>
+        <div class="flex justify-center items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-brand-telegram"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style={svgStyle}
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4"></path>
+          </svg>
+          <h1>Telegram</h1>
+        </div>
+      </a>
+    </div>
+    <div id="contact" class="flex flex-col justify-center items-start">
+      <h1 class="text-white text-2xl">
+        {lang == "En" ? "Contacts Us" : "ទាក់ទងតាម:"}
+      </h1>
+      {
+        fixedData.Footer.phone.map((phone) => (
+          <a href={"tel:" + phone}>
+            <div class="flex justify-center items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-phone"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                style={svgStyle}
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2" />
+              </svg>
+              <h1>{phone}</h1>
+            </div>
+          </a>
+        ))
+      }
+
+      <a href={"mailto:" + fixedData.Footer.gmail}>
+        <div class="flex justify-center items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-mail"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style={svgStyle}
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+            <polyline points="3 7 12 13 21 7"></polyline>
+          </svg>
+          <h1>Gmail</h1>
+        </div>
+      </a>
+      <a href={fixedData.Footer.googlemap}>
+        <div class="flex justify-center items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-map-pin"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style={svgStyle}
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <circle cx="12" cy="11" r="3"></circle>
+            <path
+              d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"
+            ></path>
+          </svg>
+          <h1>Google Map</h1>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div
+    class="w-[calc(100vw-60px)] h-[100px] border-t-2 flex justify-center items-center flex-col gap-2"
+  >
+    <div
+      class="w-full flex justify-center gap-[50px] items-center h-auto rowtocol"
+    >
+      <h1 class="max-[465px]:text-[3.2vw]">
+        {
+          lang == "En"
+            ? "Copyright © 2026 by Ecommerce Shop All right reserved."
+            : "រក្សាសិទ្ធ © 2025 ដោយ Ecommerce Shop រក្សាសិទ្ធិគ្រប់យ៉ាង"
+        }
+      </h1>
+      <div class="flex justify-center items-center gap-2">
+        <h1>{lang == "En" ? "Accept Payment:" : "ទទួលការទូរទាត់:"}</h1>
+        <img
+          width="70"
+          height="30"
+          src={weAccept.src}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+    <div class="flex justify-center items-center gap-3">
+      <h1>{lang == "En" ? "Powered By:" : "ដំណើរការដោយ:"}</h1>
+      <a href="https://sovannarot.github.io/learn">Sovannarot</a>
+    </div>
+  </div>
+</div>
+<style>
+  @media (width < 710px) {
+    .rowtocol {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+</style>

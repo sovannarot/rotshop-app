@@ -1,0 +1,16 @@
+---
+const { lang, ProductId } = Astro.params;
+import Layout from "@/layouts/Layout.astro";
+import ProductInfo from "@/components/ProductInfo";
+import { checkAuth } from "@/middleware/auth";
+const session = await checkAuth(Astro);
+---
+
+<Layout lang={lang} where=`Product/${ProductId}`
+  ><ProductInfo
+    lang={lang}
+    id={ProductId}
+    client:visible
+    userId={session.userId}
+  /></Layout
+>

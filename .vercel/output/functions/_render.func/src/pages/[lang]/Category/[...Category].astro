@@ -1,0 +1,22 @@
+---
+const { lang, Category } = Astro.params;
+const type = Category?.replace(/_/g, "/").replace(/\+/g, " ");
+import SearchShow from "../../../components/SearchShow";
+import Layout from "../../../layouts/Layout.astro";
+---
+
+<Layout lang={lang} where=`Category/${Category}`
+  ><div class="flex flex-col w-full justify-center items-center">
+    <h2
+      class="text-2xl w-[300px] text-center mt-2 khmer"
+      transition:name="title"
+    >
+      {
+        lang == "En"
+          ? "All Products Of Type " + type
+          : "ទំនិញទាំងអស់នៃប្រភេទ " + type
+      }
+    </h2>
+    <SearchShow lang={lang} type={type} bol="c" client:visible />
+  </div></Layout
+>

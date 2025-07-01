@@ -1,0 +1,144 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import SwiperPage from "@/components/swiper";
+const { lang } = Astro.params;
+import { brands } from "@/data/brands";
+import { homeShow } from "@/data/homeShow";
+import { skins } from "@/data/skins";
+import TabProduct from "@/components/TabProduct.astro";
+---
+
+<Layout lang={lang} where="">
+  <SwiperPage client:visible />
+  <div class="flexcolc w-full h-auto">
+    {
+      homeShow.map((product) => (
+        <TabProduct
+          title={product.title}
+          type={product.type}
+          lang={lang}
+          text={product.text}
+        />
+      ))
+    }
+  </div><div>
+    <div class="flex items-center w-full my-4">
+      <hr class="flex-grow border-t border-black" />
+      <span
+        class="mx-4 font-bold text-xl text-black text-[18px] max-[400px]:text-[15px] dark:text-white"
+      >
+        {lang == "En" ? "Skins Type" : "ប្រភេទនៃស្បែក"}
+      </span>
+      <hr class="flex-grow border-t border-black" />
+    </div>
+    <div class="flexrowc w-full flex-wrap gap-2 h-auto">
+      {
+        skins.slice(0, 4).map((item) => (
+          <a
+            class="flexrowa w-auto h-auto flex-col mt-2.5"
+            href={
+              "/" +
+              lang +
+              "/Skin/" +
+              item.text.replace(/\//g, "_").replace(/ /g, "+")
+            }
+          >
+            <img
+              class="w-[20vw] aspect-square rounded-[15px] "
+              loading="lazy"
+              decoding="async"
+              src={
+                item.img
+                  ? item.img
+                  : "https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png?20210521171500"
+              }
+            />
+            <h2 class="text-center text-blue-500 font-bold text-[13px] max-[500px]:text-[2vw]">
+              {lang == "En" ? item.text : item.Kh}
+            </h2>
+          </a>
+        ))
+      }
+    </div>
+    <div class="w-[100vw] h-[50px] flexrowc">
+      <a
+        class="w-[132px] flexrowc h-[36px] bg-[#283542] text-center rounded-[10px] text-white"
+        href={"/" + lang + "/Skin"}
+      >
+        <h2 class="text-[15px] font-bold">
+          {lang == "En" ? "View All" : "មើលទាំងអស់"}
+        </h2>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1.2em"
+          height="1.2em"
+          viewBox="0 0 15 15"
+        >
+          <path
+            fill="currentColor"
+            d="M8.293 2.293a1 1 0 0 1 1.414 0l4.5 4.5a1 1 0 0 1 0 1.414l-4.5 4.5a1 1 0 0 1-1.414-1.414L11 8.5H1.5a1 1 0 0 1 0-2H11L8.293 3.707a1 1 0 0 1 0-1.414"
+          ></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div>
+    <div class="flex items-center w-full">
+      <hr class="flex-grow border-t border-black" />
+      <span
+        class="mx-3 font-bold text-xl text-black text-[18px] max-[400px]:text-[15px] dark:text-white"
+      >
+        {lang == "En" ? "Explore Our Brand" : "មើលប្រេនរបស់យើងលក់"}
+      </span>
+      <hr class="flex-grow border-t border-black" />
+    </div>
+    <div class="flexrowc w-full flex-wrap gap-2 h-auto">
+      {
+        brands.slice(0, 10).map((item) => (
+          <a
+            class="flexrowa w-auto h-auto flex-col border-[1px] border-gray-300"
+            href={
+              "/" +
+              lang +
+              "/Brand/" +
+              item.text.replace(/\//g, "_").replace(/ /g, "+")
+            }
+          >
+            <img
+              class="max-w-[123px] aspect-video "
+              loading="lazy"
+              decoding="async"
+              src={
+                item.img
+                  ? item.img
+                  : "https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png?20210521171500"
+              }
+            />
+          </a>
+        ))
+      }
+    </div>
+    <div class="w-[100vw] h-[50px] flexrowc flex-wrap">
+      <a
+        class="w-[132px] h-[36px] bg-[#283542] flexrowc text-center rounded-[10px] text-white"
+        href={"/" + lang + "/Brand"}
+      >
+        <h2 class="text-[15px] font-bold">
+          {lang == "En" ? "View All" : "មើលទាំងអស់"}
+        </h2>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1.2em"
+          height="1.2em"
+          viewBox="0 0 15 15"
+        >
+          <path
+            fill="currentColor"
+            d="M8.293 2.293a1 1 0 0 1 1.414 0l4.5 4.5a1 1 0 0 1 0 1.414l-4.5 4.5a1 1 0 0 1-1.414-1.414L11 8.5H1.5a1 1 0 0 1 0-2H11L8.293 3.707a1 1 0 0 1 0-1.414"
+          ></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="w-full h-[50px]"><h1 class="text-white"></h1></div>
+</Layout>

@@ -1,22 +1,46 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import "@/styles/global.css";
+import { ClientRouter } from "astro:transitions";
+import Header from "@/components/Header.astro";
+const { lang, where } = Astro.props;
+import Footer from "@/components/Footer.astro";
+import Dock from "@/components/Dock.astro";
+---
 
+<!doctype html>
+<html lang={lang} class="overflow-x-hidden">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://yt3.googleusercontent.com/ytc/AIdro_kPc2_0vRrL-9xtSdnKyX1B09rE2n7NsKaxR3sOKuJU5xs=s900-c-k-c0x00ffffff-no-rj"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <title>RotShop App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Koulen&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <ClientRouter />
+  </head>
+  <body class="overflow-x-hidden">
+    <Header lang={lang} where={where} />
+    <slot />
+    <Footer lang={lang} />
+    <div class="w-full h-[64px] min-[1000px]:hidden"></div>
+    <Dock lang={lang} />
+  </body>
+</html>
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family: "Nunito", sans-serif;
+  }
 </style>

@@ -1,0 +1,198 @@
+---
+import Heart from "@/assets/heart.svg";
+import Home from "@/assets/home.svg";
+import Product from "@/assets/product.svg";
+import Shop from "@/assets/shop.svg";
+const { lang } = Astro.params;
+const accessToken = Astro.cookies.get("accessToken")?.value;
+if (!accessToken) {
+  return Astro.redirect(`/${lang}/signin`);
+}
+import "@/styles/global.css";
+import { ClientRouter } from "astro:transitions";
+import Kh from "@/assets/kh.webp";
+import En from "@/assets/en.webp";
+import Dock from "@/components/Dock.astro";
+const where =
+  lang == "En"
+    ? Astro.url.pathname.replace("/En", "")
+    : Astro.url.pathname.replace("/Kh", "");
+---
+
+<html lang={lang} class="overflow-x-hidden">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://yt3.googleusercontent.com/ytc/AIdro_kPc2_0vRrL-9xtSdnKyX1B09rE2n7NsKaxR3sOKuJU5xs=s900-c-k-c0x00ffffff-no-rj"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <title>RotShop App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Koulen&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <ClientRouter />
+  </head>
+  <body class="overflow-x-hidden"
+    ><div class="navbar bg-base-100 shadow-sm khmer flexrowa w-screen">
+      <div class="w-[10%] flexrowc h-auto max-[570px]:text-[13px]">
+        <a class="btn btn-ghost text-xl max-[570px]:text-[13px]">RotShop</a>
+      </div><a
+        class="w-[40px] mx-2"
+        href={lang == "En" ? `/Kh${where}` : `/En${where}`}
+      >
+        <img
+          src={lang == "En" ? Kh.src : En.src}
+          loading="lazy"
+          decoding="async"
+        />
+      </a>
+      <button
+        class="btn max-[570px]:text-[10px]"
+        popovertarget="popover-1"
+        style="anchor-name:--anchor-1"
+      >
+        {lang == "En" ? "LogOut" : "ចាកចេញ"}
+      </button>
+      <ul
+        class="dropdown menu w-auto rounded-box bg-base-100 shadow-sm max-[570px]:text-[10px] -translate-x-13"
+        popover
+        id="popover-1"
+        style="position-anchor:--anchor-1"
+      >
+        <li>
+          <button
+            class="btn btn-primary max-[570px]:text-[10px]"
+            type="submit"
+            id="logout"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1.4rem"
+              height="1.4rem"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="tabler-icon tabler-icon-logout"
+              data-sentry-element="IconLogout"
+              data-sentry-source-file="logout-button.tsx"
+              ><path
+                d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"
+              ></path><path d="M9 12h12l-3 -3"></path><path d="M18 15l3 -3"
+              ></path></svg
+            >{lang == "En" ? "Are You Sure ?" : "អ្នកច្បាស់ហើយមែន ?"}</button
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="navbar-center max-[570px]:text-[10px] w-screen flexrowa khmer">
+      <ul class="menu menu-horizontal p-2 max-[570px]:text-[10px] gap-2">
+        <li>
+          <a
+            href={"/" + lang + "/dashboard/History"}
+            class="w-auto h-auto bg-success"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1.1rem"
+              height="1.1rem"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#1c2f30"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="tabler-icon tabler-icon-list"
+              ><path d="M9 6l11 0"></path><path d="M9 12l11 0"></path><path
+                d="M9 18l11 0"></path><path d="M5 6l0 .01"></path><path
+                d="M5 12l0 .01"></path><path d="M5 18l0 .01"></path></svg
+            >{lang == "En" ? "Order History" : "ប្រវត្តិនៃការទិញ"}
+          </a>
+          <li>
+            <a
+              href={"/" + lang + "/dashboard/Address"}
+              class="w-auto h-auto bg-success"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.1rem"
+                height="1.1rem"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#1c2f30"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="tabler-icon tabler-icon-location"
+                ><path
+                  d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5"
+                ></path></svg
+              >{lang == "En" ? "Address" : "ទីតាំងដឹកជញ្ជូន"}</a
+            >
+          </li>
+          <li>
+            <a
+              href={"/" + lang + "/dashboard/Profile"}
+              class="w-auto h-auto bg-success"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.1rem"
+                height="1.1rem"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#1c2f30"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="tabler-icon tabler-icon-user"
+                ><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path><path
+                  d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path></svg
+              >{lang == "En" ? "Profile" : "ប្រវត្តិរូប"}</a
+            >
+          </li>
+        </li>
+      </ul>
+      <script is:inline>
+        document
+          .getElementById("logout")
+          ?.addEventListener("click", async () => {
+            const res = await fetch("/api/auth/signout", {
+              method: "POST",
+            });
+            if (res.ok) {
+              window.location.href = "/Kh/signin";
+            } else {
+              console.log("Error");
+            }
+          });
+      </script>
+    </div>
+    <div class="dock khmer text-[7px]" id="dock-bar">
+      <a class="button" href={"/" + lang}>
+        <Home />
+        <span class="dock-label">{lang == "En" ? "Home" : "ទំព័រដើម"}</span>
+      </a>
+
+      <a href={"/" + lang + "/Product"} class="button">
+        <Product />
+        <span class="dock-label">{lang == "En" ? "Products" : "អីវ៉ាន់"}</span>
+      </a>
+      <a class="button" href={"/" + lang + "/Cart"}>
+        <Shop />
+        <span class="dock-label">{lang == "En" ? "Cart" : "កន្ត្រក់"}</span>
+      </a>
+      <a class="button" href={"/" + lang + "/LikeList"}>
+        <Heart />
+        <span class="dock-label"
+          >{lang == "En" ? "WishList" : "ចំណូលចិត្ត"}
+        </span>
+      </a>
+    </div>
+  </body>
+</html>

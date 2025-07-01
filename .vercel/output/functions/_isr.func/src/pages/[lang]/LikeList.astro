@@ -1,0 +1,42 @@
+---
+const { lang } = Astro.params;
+import Layout from "@/layouts/Layout.astro";
+import { checkAuth } from "@/middleware/auth";
+const session = await checkAuth(Astro);
+import { supabase } from "@/lib/superbase";
+import Likecom from "@/components/Likecom";
+const { data, error } = await supabase
+  .from("likelist")
+  .select("product")
+  .eq("userid", session.userId)
+  .single();
+if (error) {
+  console.log("DB Error", error);
+}
+const numberArray = data?.product.map(Number) || [];
+import { items } from "@/data/items";
+
+const filter = items.filter((item) => numberArray.includes(item.id));
+const accessToken = Astro.cookies.get("accessToken")?.value;
+if (!accessToken) {
+  return Astro.redirect(`/${lang}/signin`);
+}
+---
+
+<Layout lang={lang} where="Product">
+  <div class="w-screen h-auto flexrowc">
+    <h2
+      class="text-2xl w-[300px] text-center mt-2 khmer"
+      transition:name="title"
+    >
+      {lang == "En" ? "LikeList Products" : "ទំនិញចំណូលចិត្តរបស់អ្នក"}
+    </h2>
+  </div>
+  <Likecom
+    filter={filter}
+    lang={lang}
+    numberArray={numberArray}
+    userId={session.userId}
+    client:visible
+  />
+</Layout>

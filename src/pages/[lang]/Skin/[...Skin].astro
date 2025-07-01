@@ -1,0 +1,17 @@
+---
+const { lang, Skin } = Astro.params;
+const type = Skin?.replace(/_/g, "/").replace(/\+/g, " ");
+import SearchShow from "@/components/SearchShow";
+import Layout from "@/layouts/Layout.astro";
+import { skins } from "@/data/skins";
+const kh = skins.find((item) => item.text === type)?.Kh;
+---
+
+<Layout lang={lang} where=`Skin/${Skin}`
+  ><div class="flex flex-col w-full justify-center items-center">
+    <h2 class="text-2xl w-[300px] text-center mt-2 khmer">
+      {lang == "En" ? "All Products For " + type : "ទំនិញទាំងអស់សម្រាប់ " + kh}
+    </h2>
+    <SearchShow lang={lang} type={type} bol="s" client:visible />
+  </div></Layout
+>

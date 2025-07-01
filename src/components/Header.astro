@@ -1,0 +1,437 @@
+---
+import { categories } from "../data/categories";
+import { skins } from "../data/skins";
+const { lang, where } = Astro.props;
+import Home from "../assets/home.svg";
+import Product from "../assets/product.svg";
+import Promotion from "../assets/promotion.svg";
+import Skin from "../assets/skin.svg";
+import Blog from "../assets/blog.svg";
+import Heart from "../assets/heart.svg";
+import Shop from "../assets/shop.svg";
+import Logo from "../assets/img1.jpg";
+import Kh from "../assets/kh.webp";
+import En from "../assets/en.webp";
+export const prerender = true;
+---
+
+<div class="navbar bg-base-100 shadow-sm max-[1000px]:justify-around">
+  <div class="w-[10%] flexrowc h-auto">
+    <a class="btn btn-ghost text-xl">RotShop</a>
+  </div>
+  <div class="navbar-center">
+    <ul class="menu menu-horizontal px-1 max-[1000px]:hidden">
+      <li>
+        <a href={"/" + lang + "/"}
+          ><Home />{lang == "En" ? "Home" : "ទំព័រដើម"}</a
+        >
+      </li>
+      <li>
+        <a href={"/" + lang + "/Product"}
+          ><Product />{lang == "En" ? "Products" : "អីវ៉ាន់"}</a
+        >
+      </li>
+
+      <li>
+        <details>
+          <summary><Product />{lang == "En" ? "Category" : "ប្រភេទ"}</summary>
+          <ul
+            class="p-2 w-[180px] max-h-[165px] overflow-y-auto overflow-x-hidden relative z-50"
+          >
+            <li>
+              <a href={"/" + lang + "/Category"}
+                >{lang == "En" ? "All" : "ទាំងអស់"}</a
+              >
+            </li>
+            {
+              categories.map((item) => (
+                <li>
+                  <a
+                    href={
+                      "/" +
+                      lang +
+                      "/Category/" +
+                      item.text.replace(/\//g, "_").replace(/ /g, "+")
+                    }
+                  >
+                    {item.text}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </details>
+      </li><li>
+        <a href={"/" + lang + "/Promotion"}
+          ><Promotion />{lang == "En" ? "Promotions" : "បញ្ចុះតម្លៃ"}</a
+        >
+      </li><li>
+        <details>
+          <summary
+            ><Skin />{
+              lang == "En" ? "Shop By Skin Concern" : "ទិញតាមប្រភេទស្បែក"
+            }</summary
+          >
+          <ul
+            class="p-2 h-auto overflow-y-auto overflow-x-hidden relative z-50 w-fit"
+          >
+            <li>
+              <a href={"/" + lang + "/Skin/"}
+                >{lang == "En" ? "All" : "ទាំងអស់"}</a
+              >
+            </li>
+            {
+              lang == "En"
+                ? skins.map((item) => (
+                    <li>
+                      <a
+                        href={
+                          "/" +
+                          lang +
+                          "/Skin/" +
+                          item.text.replace(/\//g, "_").replace(/ /g, "+")
+                        }
+                      >
+                        {item.text}
+                      </a>
+                    </li>
+                  ))
+                : skins.map((item) => (
+                    <li>
+                      <a
+                        href={
+                          "/" +
+                          lang +
+                          "/Skin/" +
+                          item.text.replace(/\//g, "_").replace(/ /g, "+")
+                        }
+                      >
+                        {item.Kh}
+                      </a>
+                    </li>
+                  ))
+            }
+          </ul>
+        </details>
+      </li>
+      <li>
+        <a href={"/" + lang + "/Blog"}>
+          <Blog /> {lang == "En" ? "Blog" : "ប្លុក"}</a
+        >
+      </li>
+    </ul>
+  </div>
+  <div class="navbar-end gap-1">
+    <a
+      class="w-[40px] mx-2"
+      href={lang == "En" ? `/Kh/${where}` : `/En/${where}`}
+    >
+      <img
+        src={lang == "En" ? Kh.src : En.src}
+        loading="lazy"
+        decoding="async"
+      />
+    </a>
+    <a
+      href={"/" + lang + "/dashboard"}
+      class="btn btn-circle max-[1000px]:hidden"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="1.1rem"
+        height="1.1rem"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#1c2f30"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="tabler-icon tabler-icon-user"
+        ><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path><path
+          d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path></svg
+      >
+    </a>
+    <a
+      class="btn btn-circle max-[420px]:hidden"
+      href={"/" + lang + "/LikeList"}
+    >
+      <Heart />
+    </a>
+    <button class="btn btn-circle max-[575px]:hidden">
+      <Shop />
+    </button>
+
+    <label class="btn btn-circle swap swap-rotate min-[1000px]:hidden">
+      <!-- this hidden checkbox controls the state -->
+      <input
+        type="checkbox"
+        id="sidebar-toggle"
+        onchange="const sidebar = document.getElementById('sidebar');
+    if (this.checked) {
+      sidebar.classList.add('open');
+      sidebar.classList.remove('close');
+    } else {
+      sidebar.classList.remove('open');
+      sidebar.classList.add('close');
+    }"
+      />
+
+      <!-- hamburger icon -->
+      <svg
+        class="swap-off fill-current"
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 512 512"
+      >
+        <path
+          d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"
+        ></path>
+      </svg>
+
+      <!-- close icon -->
+      <svg
+        class="swap-on fill-current"
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 512 512"
+      >
+        <polygon
+          points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49"
+        ></polygon>
+      </svg>
+    </label>
+    <div class="dropdown dropdown-end max-[1000px]:hidden">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+        <div class="w-10 rounded-full">
+          <img
+            alt="Tailwind CSS Navbar component"
+            src={Logo.src}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="w-[40vw] max-[600px]:w-[60vw] max-[350px]:w-[100vw] h-[100svh] absolute close bg-white min-[1000px]:hidden"
+      id="sidebar"
+    >
+      <div
+        class="w-[40vw] max-[350px]:w-[100vw] max-[600px]:w-[60vw] h-[100svh] flexcols"
+      >
+        <div class="w-full h-[100px] flexrowa gap-2 pl-2.5 darkmode">
+          <div class="avatar">
+            <div class="w-[7vw] max-[350px]:w-[10vw] rounded">
+              <img
+                src="https://img.daisyui.com/images/profile/demo/superperson@192.webp"
+                alt="Tailwind-CSS-Avatar-component"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+          <h1 class="text-[3vw] text-center font-bold">RotShop App</h1>
+          <button
+            class="w-[5vw] h-[5vw] max-[350px]:w-[8vw] max-[350px]:h-[8vw] flexrowc"
+            type="button"
+            style="background-color: white; color: rgb(28, 47, 48); border-radius: 5px; border: 2px solid rgb(224, 224, 224);  align-items: center; justify-content: center;"
+            id="togglebutton"
+            ><svg
+              viewBox="0 0 15 15"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style="width: 2rem; height: 2rem;"
+              ><path
+                d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+                clip-rule="evenodd"></path></svg
+            ></button
+          >
+        </div>
+        <div class="w-[calc(100%-3vw)] h-[1px] bg-gray-400 translate-y-[-1vw]">
+        </div>
+        <ul class="menu bg-base-200 rounded-box w-full">
+          <li class="h-[42px]">
+            <a href={"/" + lang + "/"}>
+              <Home />{" "}{lang == "En" ? "Home" : "ទំព័រដើម"}
+            </a>
+          </li>
+          <li class="h-[42px]">
+            <a href={"/" + lang + "/Product"}>
+              <Product />{" "}{lang == "En" ? "Products" : "អីវ៉ាន់"}
+            </a>
+          </li>
+          <li class="h-[42px]">
+            <a href={"/" + lang + "/Promotion"}>
+              <Promotion />{" "}{lang == "En" ? "Promotions" : "បញ្ចុះតម្លៃ"}
+            </a>
+          </li>
+          <li class="h-[42px]">
+            <a href={"/" + lang + "/Category"} href="/Category">
+              <Product />{" "}{lang == "En" ? "Category" : "ប្រភេទ"}
+            </a>
+          </li>
+          <ul
+            class="p-2 w-full max-h-[165px] overflow-y-auto overflow-x-hidden text-ellipsis"
+          >
+            {
+              categories.map((item) => (
+                <li>
+                  <a
+                    href={
+                      "/" +
+                      lang +
+                      "/Category/" +
+                      item.text.replace(/\//g, "_").replace(/ /g, "+")
+                    }
+                  >
+                    {item.text}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+
+          <li class="h-[42px]">
+            <a onclick="skin != skin" href={"/" + lang + "/Skin"}>
+              <Product />{" "}{
+                lang == "En" ? "Shop By Skin Concern" : "ប្រភេទស្បែក"
+              }
+            </a>
+          </li>
+          <ul
+            class="p-2 w-full max-h-[165px] overflow-y-auto overflow-x-hidden text-ellipsis"
+          >
+            {
+              lang == "En"
+                ? skins.map((item) => (
+                    <li>
+                      <a
+                        href={
+                          "/" +
+                          lang +
+                          "/Skin/" +
+                          item.text.replace(/\//g, "_").replace(/ /g, "+")
+                        }
+                      >
+                        {item.text}
+                      </a>
+                    </li>
+                  ))
+                : skins.map((item) => (
+                    <li>
+                      <a
+                        href={
+                          "/" +
+                          lang +
+                          "/Skin/" +
+                          item.text.replace(/\//g, "_").replace(/ /g, "+")
+                        }
+                      >
+                        {item.Kh}
+                      </a>
+                    </li>
+                  ))
+            }
+          </ul>
+          <li class="h-[42px]">
+            <a href={"/" + lang + "/Blog"}>
+              <Blog />{" "}{lang == "En" ? "Blog" : "ប្លុក"}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div
+      id="sidebar-overlay"
+      class="w-[60vw] max-[600px]:w-[40vw] h-[calc(100vh+64px)] absolute translate-y-[-64px] max-[350px]:w-0"
+    >
+    </div>
+    <style>
+      #sidebar {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .open {
+        transform: translate(60vw, 0px);
+        position: fixed;
+        z-index: 50;
+        inset: 0;
+      }
+      .close {
+        transform: translate(100vw, 0px);
+        position: fixed;
+      }
+      #sidebar-overlay.active {
+        display: block;
+      }
+      #sidebar-overlay {
+        background: rgba(0, 0, 0, 0.4); /* 40% black */
+        position: fixed;
+        inset: 0;
+        z-index: 40;
+        display: none;
+      }
+
+      @media only screen and (max-width: 600px) {
+        .open {
+          transform: translate(40vw, 0px);
+        }
+        .close {
+          transform: translate(100vw, 0px);
+        }
+      }
+      @media only screen and (max-width: 350px) {
+        .open {
+          transform: translate(0vw, 0px);
+        }
+        .close {
+          transform: translate(120vw, 0px);
+        }
+      }
+      @media (prefers-color-scheme: dark) {
+        .darkmode {
+          background: var(--color-info-content);
+        }
+        #sidebar {
+          background: var(--color-info-content);
+        }
+      }
+    </style>
+    <script is:inline>
+      // This script runs in the browser
+      if (typeof window !== "undefined") {
+        const sidebarToggle = document.getElementById("sidebar-toggle");
+        const buttonToggle = document.getElementById("togglebutton");
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("sidebar-overlay");
+        function updateSidebar() {
+          if (sidebarToggle.checked) {
+            overlay.classList.add("active");
+          } else {
+            overlay.classList.remove("active");
+          }
+        }
+
+        sidebarToggle?.addEventListener("change", updateSidebar);
+
+        overlay?.addEventListener("click", () => {
+          sidebarToggle.checked = false;
+          sidebar.classList.remove("open");
+          sidebar.classList.add("close");
+          overlay.classList.remove("active");
+        });
+        buttonToggle?.addEventListener("click", () => {
+          updateSidebar;
+          sidebarToggle.checked = false;
+          sidebar.classList.remove("open");
+          sidebar.classList.add("close");
+          overlay.classList.remove("active");
+        });
+      }
+    </script>
+  </div>
+</div>

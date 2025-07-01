@@ -1,0 +1,145 @@
+{
+	"version": 3,
+	"routes": [
+		{
+			"src": "^/_astro/(.*)$",
+			"headers": {
+				"cache-control": "public, max-age=31536000, immutable"
+			},
+			"continue": true
+		},
+		{
+			"handle": "filesystem"
+		},
+		{
+			"src": "^\\/_server-islands\\/([^/]+?)\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/_image\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/api\\/auth\\/register\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/api\\/auth\\/signin\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/api\\/auth\\/signout\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/api\\/likelist\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/api\\/remove-product\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/payment\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/([^/]+?)\\/About\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/([^/]+?)\\/Blog\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/([^/]+?)\\/Brand\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/([^/]+?)\\/Brand(?:\\/(.*?))?\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/([^/]+?)\\/Category\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/([^/]+?)\\/Category(?:\\/(.*?))?\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/([^/]+?)\\/dashboard\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/([^/]+?)\\/dashboard(?:\\/(.*?))?\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/([^/]+?)\\/error\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/([^/]+?)\\/Faq\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/([^/]+?)\\/LikeList\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/([^/]+?)\\/payment(?:\\/(.*?))?\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/([^/]+?)\\/Product\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/([^/]+?)\\/Product(?:\\/(.*?))?\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/([^/]+?)\\/Promotion\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/([^/]+?)\\/register\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/([^/]+?)\\/signin\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/([^/]+?)\\/Skin\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/([^/]+?)\\/Skin(?:\\/(.*?))?\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/([^/]+?)\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^\\/$",
+			"dest": "/_isr?x_astro_path=$0"
+		}
+	],
+	"images": {
+		"sizes": [
+			640,
+			750,
+			828,
+			1080,
+			1200,
+			1920,
+			2048,
+			3840
+		],
+		"domains": [],
+		"remotePatterns": []
+	}
+}

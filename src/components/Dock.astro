@@ -1,0 +1,50 @@
+---
+import Home from "../assets/home.svg";
+import Product from "../assets/product.svg";
+import Heart from "../assets/heart.svg";
+import Shop from "../assets/shop.svg";
+const { lang } = Astro.props;
+export const prerender = false;
+let i = 0;
+---
+
+<div class="dock min-[1000px]:hidden khmer text-[7px]" id="dock-bar">
+  <a class="button" href={"/" + lang}>
+    <Home />
+    <span class="dock-label">{lang == "En" ? "Home" : "ទំព័រដើម"}</span>
+  </a>
+
+  <a href={"/" + lang + "/Product"} class="button">
+    <Product />
+    <span class="dock-label">{lang == "En" ? "Products" : "អីវ៉ាន់"}</span>
+  </a>
+  <a class="min-[575px]:hidden button" href={"/" + lang + "/Cart"}>
+    <Shop />
+    <span class="dock-label">{lang == "En" ? "Cart" : "កន្ត្រក់"}</span>
+  </a>
+  <a class="min-[420px]:hidden button" href={"/" + lang + "/LikeList"}>
+    <Heart />
+    <span class="dock-label">{lang == "En" ? "WishList" : "ចំណូលចិត្ត"} </span>
+  </a>
+  <a href={"/" + lang + "/dashboard"} class="button">
+    <div class="scale-[1.2]">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="1.1rem"
+        height="1.1rem"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#1c2f30"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="tabler-icon tabler-icon-user"
+        ><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path><path
+          d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path></svg
+      >
+    </div>
+    <span class="dock-label"
+      >{lang == "En" ? "Dashboard" : "ផ្ទាំងគ្រប់គ្រង"}</span
+    >
+  </a>
+</div>

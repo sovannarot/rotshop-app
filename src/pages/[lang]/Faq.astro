@@ -1,0 +1,68 @@
+---
+import Layout from "@/layouts/Layout.astro";
+const { lang } = Astro.params;
+---
+
+<Layout
+  lang={lang} where="Faq">
+  <div class="flexcolc w-[100vw] h-[calc(100svh-128px)] p-3">
+    <h2
+      class="text-2xl text-success-content font-bold khmer mb-1"
+      transition:name="title"
+    >
+      សំណួរចម្លើយទូទៅ
+    </h2>
+    <div class="collapse collapse-arrow bg-base-100 border border-base-300">
+      <input type="radio" name="my-accordion-2" checked="checked" />
+      <div class="collapse-title font-semibold khmer">
+        តើខ្ញុំនឹងទទួលបានផលិតផលរបស់ខ្ញុំនៅពេលណា?
+      </div>
+      <div class="collapse-content text-sm khmer">
+        ប្រសិនបើអ្នកជ្រើសរើសការដឹកជញ្ជូននៅទីក្រុងភ្នំពេញ រាល់ការកម្មង់មុនម៉ោង 12
+        ថ្ងៃត្រង់នឹងដឹកជញ្ជូនចាប់ពីម៉ោង 2-5 រសៀលនៅថ្ងៃដដែល។ បើកុម្ម៉ង់ថ្ងៃក្រោយ
+        អ្នកនឹងទទួលបាននៅថ្ងៃស្អែក។ ប្រសិនបើអ្នកជ្រើសរើស Virak Buntham ឬ J&T
+        រាល់ការកុម្ម៉ង់មុនម៉ោង 5 ល្ងាចនឹងចេញនៅយប់ដដែល
+        ហើយអ្នកនឹងទទួលបាននៅថ្ងៃបន្ទាប់។
+      </div>
+    </div>
+    <div class="collapse collapse-arrow bg-base-100 border border-base-300">
+      <input type="radio" name="my-accordion-2" />
+      <div class="collapse-title font-semibold khmer">
+        តើយើងអាចធ្វើការស្នើសុំពិសេសបានទេ?
+      </div>
+      <div class="collapse-content text-sm khmer">
+        បាទ / ចាស អ្នកអាចកត់សម្គាល់សំណើរបស់អ្នកអំឡុងពេលបង់ប្រាក់ចេញ។
+        យើងរីករាយក្នុងការខ្ចប់វាជាកាដូ សរសេរកំណត់ចំណាំ
+        ឬប្រគល់ជូននៅពេលជាក់លាក់ណាមួយចាប់ពីម៉ោង 7-5 ល្ងាច។
+      </div>
+    </div>
+    <div class="collapse collapse-arrow bg-base-100 border border-base-300">
+      <input type="radio" name="my-accordion-2" />
+      <div class="collapse-title font-semibold khmer">
+        តើ​អ្វី​ជា​គោលការណ៍​ត្រឡប់​របស់​អ្នក?
+      </div>
+      <div class="collapse-content text-sm khmer">
+        សម្រាប់រាល់ឧបករណ៍ដែលអ្នកទិញពីយើង ប្រសិនបើវាខូច ឬមានបញ្ហាអ្វីផ្សេងទៀត
+        យើងនឹងផ្ញើឱ្យអ្នកមួយទៀត ឬអ្នកអាចយកអ្វីផ្សេងមកជំនួសវិញ។
+        គោលការណ៍នេះអនុវត្តរហូតដល់មួយសប្តាហ៍បន្ទាប់ពីអ្នកទទួលបានទំនិញរបស់អ្នក។
+      </div>
+    </div>
+    <div class="collapse collapse-arrow bg-base-100 border border-base-300">
+      <input type="radio" name="my-accordion-2" />
+      <div class="collapse-title font-semibold khmer">
+        តើអ្នកដឹកជញ្ជូនដល់ណា?
+      </div>
+      <div class="collapse-content text-sm khmer">
+        ដោយសារហាងយើងខ្ញុំទើបមកដល់ថ្មី ដឹកជញ្ជូនតែក្នុងប្រទេសកម្ពុជា គ្រប់ 25
+        ខេត្តក្រុង ដោយតម្លៃ 1.5$ ។ ប្រសិនបើអ្នករស់នៅក្នុងទីក្រុងភ្នំពេញ
+        អ្នកអាចជ្រើសរើសការដឹកជញ្ជូននៅទីក្រុងភ្នំពេញសម្រាប់សេវាកម្មរហ័ស។
+        បើ​អ្នក​រស់នៅ​តាម​ខេត្ត​ផ្សេង​អាច​រើស​ J&T ឬ Virak Buntham ។ សម្រាប់ J&T
+        ពួកគេនឹងដឹកជញ្ជូនដល់ផ្ទះរបស់អ្នក
+        ហើយអ្នកអាចជ្រើសរើសរវាងការបង់ប្រាក់មកយើងដោយផ្ទាល់តាមរយៈ KHQR
+        ក្នុងអំឡុងពេលចេញលុយរបស់អ្នក ឬទូទាត់សាច់ប្រាក់លើការដឹកជញ្ជូនដល់អ្នកបើកបរ។
+        សម្រាប់ Virak Buntham អ្នកអាចទទួលបានទំនិញរបស់អ្នកនៅក្នុងសាខា VB
+        ប៉ុន្តែអ្នកត្រូវធ្វើការបង់ប្រាក់ជាមុនសិន មុននឹងយើងផ្ញើផលិតផលរបស់អ្នកចេញ។
+      </div>
+    </div>
+  </div>
+</Layout>

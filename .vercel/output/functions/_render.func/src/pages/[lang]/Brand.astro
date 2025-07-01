@@ -1,0 +1,46 @@
+---
+const { lang } = Astro.params;
+import Layout from "@/layouts/Layout.astro";
+import { brands } from "@/data/brands";
+---
+
+<Layout lang={lang} where="Brand"
+  ><div class="flex flex-col w-full justify-center items-center">
+    <h2 class="text-3xl w-auto text-center mt-2" transition:name="title">
+      {lang == "En" ? "Explore All Brands" : "មើលប្រេនទាំងអស់"}
+    </h2>
+    <div
+      class="flexrowc w-[calc(100vw-100px)] p-3 m-3 flex-wrap gap-x-3 gap-y-1"
+    >
+      {
+        brands.map((item) => (
+          <a
+            class="flex justify-around items-center w-[124px] h-[145px] m-3 p-3 flex-col"
+            href={
+              "/" +
+              lang +
+              "/Brand/" +
+              item.text.replace(/\//g, "_").replace(/ /g, "+")
+            }
+          >
+            <img
+              class=" h-[80px] aspect-square rounded-[50%] "
+              loading="lazy"
+              decoding="async"
+              src={
+                item.img
+                  ? item.img
+                  : "https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png?20210521171500"
+              }
+              alt={item.text}
+            />
+            <h2 class="text-center text-blue-500 font-bold text-[15px]">
+              {item.text}
+            </h2>
+          </a>
+        ))
+      }
+    </div>
+    <div class="w-full h-[40px]"></div>
+  </div></Layout
+>

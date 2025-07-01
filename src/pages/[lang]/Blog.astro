@@ -1,0 +1,49 @@
+---
+import { fixedData } from "@/data/fixedData";
+const { lang } = Astro.params;
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout lang={lang} where="Blog">
+  <div
+    class="flex flex-col w-full justify-center items-center dark:text-green-400"
+  >
+    <h2 class="text-3xl w-[100px] text-center mt-2 khmer" transition:name="title">
+      {lang == "En" ? "Blogs" : "ប្លុក"}
+    </h2>
+    <div
+      id="blogpost"
+      class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-x-3 gap-y-4 w-full max-w-7xl mx-auto mt-2 mb-5 px-2"
+    >
+      {
+        fixedData.BlogCard.map((card) => (
+          <div
+            class="h-auto w-full max-w-[220px] rounded-[10px] flex flex-col justify-start gap-y-1.5 mx-auto bg-white"
+            style="box-shadow: 0 4px 16px 0 rgba(0,0,0,0.08);"
+          >
+            <img
+              src={card.img}
+              class="w-full h-[120px] rounded-[10px] object-cover"
+              alt={card.text}
+              loading="lazy"
+              decoding="async"
+            />
+            <h1 class="w-full min-h-[48px] text-start text-[18px] font-bold px-2 pt-1 line-clamp-2 text-ellipsis">
+              {card.text}
+            </h1>
+            <h2 class="w-full text-start text-[12px] ml-2 text-gray-500">
+              {"By " + card.author}
+            </h2>
+            <a
+              class="border border-cyan-300 w-[100px] h-[35px] ml-2 text-center flex items-center justify-center mb-2 rounded hover:bg-cyan-50 transition"
+              href={card.url}
+            >
+              {lang == "En" ? "Read More" : "អានបន្ថែម"}
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <div class="w-full h-[55px]"></div>
+</Layout>
