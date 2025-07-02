@@ -12,7 +12,6 @@ import "@/styles/global.css";
 import { ClientRouter } from "astro:transitions";
 import Kh from "@/assets/kh.webp";
 import En from "@/assets/en.webp";
-import Dock from "@/components/Dock.astro";
 const where =
   lang == "En"
     ? Astro.url.pathname.replace("/En", "")
@@ -158,7 +157,7 @@ const where =
           </li>
         </li>
       </ul>
-      <script is:inline>
+      <script>
         document
           .getElementById("logout")
           ?.addEventListener("click", async () => {

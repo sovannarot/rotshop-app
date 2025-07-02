@@ -21,14 +21,14 @@ import Logo from "@/assets/img1.jpg";
     <form
       action="/api/auth/signin"
       method="post"
-      class="bg-amber-100 w-auto h-auto p-2 flexcolc rounded-2xl gap-1"
+      class="bg-green-400 w-auto h-auto p-2 flexcolc rounded-2xl gap-1 dark:bg-blue-400"
     >
       <div class="avatar">
         <div class="w-24 rounded-xl">
           <img src={Logo.src} loading="lazy" decoding="async" />
         </div>
       </div>
-      <p class="khmer m-2">{lang == "En" ? "SignUp" : "បង្កើតគណនី"}</p>
+      <p class="khmer m-2">{lang == "En" ? "SignIn" : "បញ្ចូលគណនី"}</p>
       <label class="input validator">
         <svg
           class="h-[1em] opacity-50"

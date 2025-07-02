@@ -1,16 +1,17 @@
 import { c as createComponent, a as createAstro, r as renderComponent, b as renderTemplate } from '../../../chunks/astro/server_DNZrGGzZ.mjs';
 import 'kleur/colors';
-import { s as skins, $ as $$Layout } from '../../../chunks/Layout_BhJArJ66.mjs';
+import { s as skins, $ as $$Layout } from '../../../chunks/Layout_BsMIc5ZB.mjs';
 import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
 import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 /* empty css                                             */
 import { Navigation } from 'swiper/modules';
 import { i as items, C as Cardpost } from '../../../chunks/CardPost_Bajy2JFA.mjs';
-import { c as checkAuth } from '../../../chunks/auth_CE59TEAz.mjs';
+import { c as checkAuth } from '../../../chunks/auth_BU6KHo0h.mjs';
+import { s as supabase } from '../../../chunks/superbase_Cr59nk6P.mjs';
 export { renderers } from '../../../renderers.mjs';
 
-const ProductInfo = ({ lang, id, userId }) => {
+const ProductInfo = ({ lang, id, userId, limit }) => {
   const shareData = {
     title: "RotShop-App",
     text: "RotShop មានលក់ទំនិញនេះអាចចូលមើលបាន",
@@ -72,14 +73,16 @@ const ProductInfo = ({ lang, id, userId }) => {
     lang === "En" ? "Don't Have Similar Product" : "គ្មានទំនិញដូចគ្នាទេ"
   ] });
   const fetchUser = async () => {
-    await fetch("/api/likelist", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        userId,
-        productId: id
-      })
-    });
+    if (limit < 7) {
+      await fetch("/api/likelist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId,
+          productId: id
+        })
+      });
+    }
   };
   return /* @__PURE__ */ jsxs(Fragment, { children: [
     /* @__PURE__ */ jsxs("div", { className: "flex items-start justify-center h-auto w-[60vw] translate-x-[20vw] max-[500px]:translate-x-[5vw] max-[850px]:flex-col max-[500px]:w-[90vw] ", children: [
@@ -345,8 +348,8 @@ const ProductInfo = ({ lang, id, userId }) => {
         ] })
       ] })
     ] }),
-    /* @__PURE__ */ jsx("div", { className: "divider divider-error w-[70vw] text-2xl translate-x-[15vw] font-bold", children: lang == "En" ? "Similar Products" : "ផលិតផលស្រដៀងគ្នា" }),
-    /* @__PURE__ */ jsx("div", { className: "grid grid-cols-6 gap-x-3 gap-y-4 w-[calc(100vw-40px)] mx-2 max-[1123px]:grid-cols-5 max-[938px]:grid-cols-4 max-[753px]:grid-cols-3 max-[520px]:grid-cols-2", children: similarCard }),
+    /* @__PURE__ */ jsx("div", { className: "divider divider-error w-[70vw] text-2xl translate-x-[15vw] font-bold khmer", children: lang == "En" ? "Similar Products" : "ផលិតផលស្រដៀងគ្នា" }),
+    /* @__PURE__ */ jsx("div", { className: "grid grid-cols-6 gap-x-3 gap-y-4 w-[calc(100vw-40px)] mx-2 max-[1123px]:grid-cols-5 max-[938px]:grid-cols-4 max-[753px]:grid-cols-3 max-[520px]:grid-cols-2 mt-2.5 translate-y-3.5", children: similarCard }),
     item.Description2 ? /* @__PURE__ */ jsxs("div", { className: "flex items-start flex-col justify-start gap-1 w-full h-[200px] dark:bg-amber-500 overflow-hidden mt-5 p-4", children: [
       /* @__PURE__ */ jsx("h2", { className: "font-bold  text-black dark:text-white text-start text-[22px]", children: "Description" }),
       item.Description2?.map(
@@ -375,7 +378,16 @@ const $$ = createComponent(async ($$result, $$props, $$slots) => {
   Astro2.self = $$;
   const { lang, ProductId } = Astro2.params;
   const session = await checkAuth(Astro2);
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "lang": lang, "where": `Product/${ProductId}` }, { "default": async ($$result2) => renderTemplate`${renderComponent($$result2, "ProductInfo", ProductInfo, { "lang": lang, "id": ProductId, "client:visible": true, "userId": session.userId, "client:component-hydration": "visible", "client:component-path": "@/components/ProductInfo", "client:component-export": "default" })}` })}`;
+  const { data, error } = await supabase.from("likelist").select("product").eq("userid", session.userId).single();
+  if (error) {
+    console.log("DB Error", error);
+  }
+  const accessToken = Astro2.cookies.get("accessToken")?.value;
+  if (!accessToken) {
+    return Astro2.redirect(`/${lang}/signin`);
+  }
+  let limit = data?.product.length || 0;
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "lang": lang, "where": `Product/${ProductId}` }, { "default": async ($$result2) => renderTemplate`${renderComponent($$result2, "ProductInfo", ProductInfo, { "lang": lang, "id": ProductId, "client:visible": true, "userId": session.userId, "limit": limit, "client:component-hydration": "visible", "client:component-path": "@/components/ProductInfo", "client:component-export": "default" })}` })}`;
 }, "C:/Users/ASUS/OneDrive/Desktop/rotshop-app/src/pages/[lang]/Product/[...ProductId].astro", void 0);
 
 const $$file = "C:/Users/ASUS/OneDrive/Desktop/rotshop-app/src/pages/[lang]/Product/[...ProductId].astro";

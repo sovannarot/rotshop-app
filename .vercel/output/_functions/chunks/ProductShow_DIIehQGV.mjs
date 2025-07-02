@@ -1,7 +1,7 @@
 import { jsxs, Fragment, jsx } from 'react/jsx-runtime';
 import { useState, useEffect } from 'react';
 import { i as items, C as Cardpost } from './CardPost_Bajy2JFA.mjs';
-import { c as categories } from './Layout_BhJArJ66.mjs';
+import { c as categories } from './Layout_BsMIc5ZB.mjs';
 import { s as sortProducts } from './utils_0Z2Fp4p7.mjs';
 
 const ProductShow = ({ lang, promotion }) => {

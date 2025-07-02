@@ -3,7 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 const { lang } = Astro.params;
 const accessToken = Astro.cookies.get("accessToken")?.value;
 if (accessToken) {
-  return Astro.redirect(`/${lang}/dashboard`);
+  return Astro.redirect(`/${lang}/dashboard/`);
 }
 import Logo from "@/assets/img1.jpg";
 ---
@@ -21,7 +21,7 @@ import Logo from "@/assets/img1.jpg";
     <form
       action="/api/auth/register"
       method="post"
-      class="bg-amber-100 w-auto h-auto p-2 flexcolc rounded-2xl gap-1"
+      class="bg-green-400 w-auto h-auto p-2 flexcolc rounded-2xl gap-1 dark:bg-blue-400"
     >
       <div class="avatar">
         <div class="w-24 rounded-xl">

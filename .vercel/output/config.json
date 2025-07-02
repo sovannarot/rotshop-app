@@ -68,15 +68,15 @@
 			"dest": "/_isr?x_astro_path=$0"
 		},
 		{
+			"src": "^\\/([^/]+?)\\/Checkout\\/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
 			"src": "^\\/([^/]+?)\\/dashboard\\/?$",
 			"dest": "/_isr?x_astro_path=$0"
 		},
 		{
 			"src": "^\\/([^/]+?)\\/dashboard(?:\\/(.*?))?\\/?$",
-			"dest": "/_isr?x_astro_path=$0"
-		},
-		{
-			"src": "^\\/([^/]+?)\\/error\\/?$",
 			"dest": "/_isr?x_astro_path=$0"
 		},
 		{

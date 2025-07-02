@@ -1,6 +1,6 @@
 import { c as createComponent, a as createAstro, r as renderComponent, b as renderTemplate } from '../../../chunks/astro/server_DNZrGGzZ.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../../../chunks/Layout_BhJArJ66.mjs';
+import { $ as $$Layout } from '../../../chunks/Layout_BsMIc5ZB.mjs';
 export { renderers } from '../../../renderers.mjs';
 
 const $$Astro = createAstro();

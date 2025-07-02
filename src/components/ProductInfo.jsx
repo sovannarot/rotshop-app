@@ -6,7 +6,7 @@ import { Navigation } from "swiper/modules";
 import { items } from "../data/items";
 import { skins } from "../data/skins";
 import CardPost from "./CardPost";
-const ProductInfo = ({ lang, id, userId }) => {
+const ProductInfo = ({ lang, id, userId, limit }) => {
   const shareData = {
     title: "RotShop-App",
     text: "RotShop មានលក់ទំនិញនេះអាចចូលមើលបាន",
@@ -75,14 +75,16 @@ const ProductInfo = ({ lang, id, userId }) => {
       </div>
     );
   const fetchUser = async () => {
-    const res = await fetch("/api/likelist", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        userId: userId,
-        productId: id,
-      }),
-    });
+    if (limit < 7) {
+      const res = await fetch("/api/likelist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: userId,
+          productId: id,
+        }),
+      });
+    }
   };
   return (
     <>
@@ -356,10 +358,10 @@ const ProductInfo = ({ lang, id, userId }) => {
           </div>
         </div>
       </div>
-      <div className="divider divider-error w-[70vw] text-2xl translate-x-[15vw] font-bold">
+      <div className="divider divider-error w-[70vw] text-2xl translate-x-[15vw] font-bold khmer">
         {lang == "En" ? "Similar Products" : "ផលិតផលស្រដៀងគ្នា"}
       </div>
-      <div className="grid grid-cols-6 gap-x-3 gap-y-4 w-[calc(100vw-40px)] mx-2 max-[1123px]:grid-cols-5 max-[938px]:grid-cols-4 max-[753px]:grid-cols-3 max-[520px]:grid-cols-2">
+      <div className="grid grid-cols-6 gap-x-3 gap-y-4 w-[calc(100vw-40px)] mx-2 max-[1123px]:grid-cols-5 max-[938px]:grid-cols-4 max-[753px]:grid-cols-3 max-[520px]:grid-cols-2 mt-2.5 translate-y-3.5">
         {similarCard}
       </div>
 

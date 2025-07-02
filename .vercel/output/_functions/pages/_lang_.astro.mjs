@@ -1,6 +1,6 @@
 import { c as createComponent, a as createAstro, m as maybeRenderHead, r as renderComponent, b as renderTemplate, d as addAttribute } from '../chunks/astro/server_DNZrGGzZ.mjs';
 import 'kleur/colors';
-import { f as fixedData, $ as $$Layout, s as skins } from '../chunks/Layout_BhJArJ66.mjs';
+import { f as fixedData, $ as $$Layout, s as skins } from '../chunks/Layout_BsMIc5ZB.mjs';
 import { jsx, Fragment } from 'react/jsx-runtime';
 import { Swiper, SwiperSlide } from 'swiper/react';
 /* empty css                                       */

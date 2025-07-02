@@ -13,7 +13,6 @@ export const POST: APIRoute = async ({ request }) => {
       status: 500,
     });
   }
-
   return new Response(JSON.stringify({ success: true, product: "updated" }), {
     status: 200,
   });

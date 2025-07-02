@@ -64,4 +64,4 @@ const En = new Proxy({"src":"/_astro/en.Dp-Otl2e.webp","width":794,"height":512,
 						}
 					});
 
-export { $$ClientRouter as $, En as E, Heart as H, Kh as K, Product as P, Shop as S, Home as a, createSvgComponent as c };
+export { $$ClientRouter as $, En as E, Home as H, Kh as K, Product as P, Shop as S, Heart as a, createSvgComponent as c };

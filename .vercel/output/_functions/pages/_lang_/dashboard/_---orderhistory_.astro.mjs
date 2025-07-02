@@ -5,10 +5,10 @@ export { renderers } from '../../../renderers.mjs';
 
 const $$ = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate``;
-}, "C:/Users/ASUS/OneDrive/Desktop/rotshop-app/src/pages/[lang]/dashboard/[...oderhistory].astro", void 0);
+}, "C:/Users/ASUS/OneDrive/Desktop/rotshop-app/src/pages/[lang]/dashboard/[...orderhistory].astro", void 0);
 
-const $$file = "C:/Users/ASUS/OneDrive/Desktop/rotshop-app/src/pages/[lang]/dashboard/[...oderhistory].astro";
-const $$url = "/[lang]/dashboard/[...oderhistory]";
+const $$file = "C:/Users/ASUS/OneDrive/Desktop/rotshop-app/src/pages/[lang]/dashboard/[...orderhistory].astro";
+const $$url = "/[lang]/dashboard/[...orderhistory]";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
 	__proto__: null,

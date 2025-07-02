@@ -1,6 +1,6 @@
 import { renderers } from './renderers.mjs';
 import { c as createExports } from './chunks/entrypoint_DUltDTkr.mjs';
-import { manifest } from './manifest_C401PArQ.mjs';
+import { manifest } from './manifest_BxOKkZLK.mjs';
 
 const serverIslandMap = new Map();;
 
@@ -17,9 +17,9 @@ const _page9 = () => import('./pages/_lang_/brand.astro.mjs');
 const _page10 = () => import('./pages/_lang_/brand/_---brand_.astro.mjs');
 const _page11 = () => import('./pages/_lang_/category.astro.mjs');
 const _page12 = () => import('./pages/_lang_/category/_---category_.astro.mjs');
-const _page13 = () => import('./pages/_lang_/dashboard.astro.mjs');
-const _page14 = () => import('./pages/_lang_/dashboard/_---oderhistory_.astro.mjs');
-const _page15 = () => import('./pages/_lang_/error.astro.mjs');
+const _page13 = () => import('./pages/_lang_/checkout.astro.mjs');
+const _page14 = () => import('./pages/_lang_/dashboard.astro.mjs');
+const _page15 = () => import('./pages/_lang_/dashboard/_---orderhistory_.astro.mjs');
 const _page16 = () => import('./pages/_lang_/faq.astro.mjs');
 const _page17 = () => import('./pages/_lang_/likelist.astro.mjs');
 const _page18 = () => import('./pages/_lang_/payment/_---paymentid_.astro.mjs');
@@ -46,9 +46,9 @@ const pageMap = new Map([
     ["src/pages/[lang]/Brand/[...Brand].astro", _page10],
     ["src/pages/[lang]/Category.astro", _page11],
     ["src/pages/[lang]/Category/[...Category].astro", _page12],
-    ["src/pages/[lang]/dashboard.astro", _page13],
-    ["src/pages/[lang]/dashboard/[...oderhistory].astro", _page14],
-    ["src/pages/[lang]/error.astro", _page15],
+    ["src/pages/[lang]/Checkout.astro", _page13],
+    ["src/pages/[lang]/dashboard.astro", _page14],
+    ["src/pages/[lang]/dashboard/[...orderhistory].astro", _page15],
     ["src/pages/[lang]/Faq.astro", _page16],
     ["src/pages/[lang]/LikeList.astro", _page17],
     ["src/pages/[lang]/payment/[...paymentId].astro", _page18],
@@ -71,7 +71,7 @@ const _manifest = Object.assign(manifest, {
     middleware: () => import('./_noop-middleware.mjs')
 });
 const _args = {
-    "middlewareSecret": "48cd7bb8-bd5b-4861-a093-fadcd7ea4e3f",
+    "middlewareSecret": "ae6189f4-ee6c-4be8-9cc6-d6b137d8b8d7",
     "skewProtection": false
 };
 const _exports = createExports(_manifest, _args);
