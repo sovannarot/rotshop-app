@@ -46,6 +46,7 @@ const ProductInfo = ({ lang, id, userId, limit }) => {
     item.volume[0].color[0].StockAmount
   );
   const [showHide, setShowHide] = useState("Show");
+  const [error, setError] = useState(false);
   const [color, setColor] = useState(item.volume[0].color[0].En);
   const [colors, setColors] = useState(item.volume[0].color);
   useEffect(() => {
@@ -85,11 +86,20 @@ const ProductInfo = ({ lang, id, userId, limit }) => {
         }),
       });
     }
+    if (!userId) {
+      setError(!error);
+      setInterval(() => {
+        setError(false);
+      }, 2500);
+    }
   };
   return (
     <>
       <div className="flex items-start justify-center h-auto w-[60vw] translate-x-[20vw] max-[500px]:translate-x-[5vw] max-[850px]:flex-col max-[500px]:w-[90vw] ">
         <div className="flex flex-col justify-center items-center h-auto w-[50%] flex-wrap gap-2 mt-2 max-[850px]:w-full">
+          <h2 className={error ? "khmer text-red-500" : "hidden"}>
+            {lang == "En" ? "Need Signin First" : "ត្រូវការចុះឈ្មោះជាមុន"}
+          </h2>
           <img
             src={itemImg}
             loading="lazy"

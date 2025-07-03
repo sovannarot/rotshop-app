@@ -6,6 +6,9 @@ import { brands } from "@/data/brands";
 import { homeShow } from "@/data/homeShow";
 import { skins } from "@/data/skins";
 import TabProduct from "@/components/TabProduct.astro";
+if (lang !== "Kh" && lang !== "En") {
+  return Astro.redirect("/Kh");
+}
 ---
 
 <Layout lang={lang} where="">

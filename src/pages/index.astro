@@ -1,21 +1,11 @@
 ---
 import "@/styles/global.css";
+return Astro.redirect("/Kh");
 ---
 
 <html>
   <head>
     <title>Redirecting...</title>
-    <script>
-      const supported = ["En", "Kh"];
-      const savedLang = localStorage.getItem("lang");
-      const browserLang = navigator.language?.split("-")[0];
-      const lang =
-        savedLang || (supported.includes(browserLang) ? browserLang : "Kh");
-      localStorage.setItem("lang", lang);
-      if (!location.pathname.startsWith(`/${lang}/`)) {
-        window.location.replace(`/${lang}/`);
-      }
-    </script>
   </head>
   <body class="w-screen h-screen flexrowc">
     <span class="loading loading-infinity loading-xl"></span>

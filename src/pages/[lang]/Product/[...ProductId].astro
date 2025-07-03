@@ -13,10 +13,6 @@ const { data, error } = await supabase
 if (error) {
   console.log("DB Error", error);
 }
-const accessToken = Astro.cookies.get("accessToken")?.value;
-if (!accessToken) {
-  return Astro.redirect(`/${lang}/signin`);
-}
 let limit = data?.product.length || 0;
 ---
 
